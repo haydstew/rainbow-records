@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rainbow Records</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" type="image/x-icon" href="images/RR_icon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Comfortaa:400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <section class="header-sections">
+        <a class="header-logo-wrapper" href="#">
+          <img
+            class="header-logo"
+            src="images/RR_icon.png"
+            alt="Rainbow Records logo"
+          />
+          <p class="logo-text">Rainbow Records</p>
+        </a>
+        <nav class="nav">
+          <ul class="nav-links-container">
+            <li class="link-wrapper">
+              <a class="nav-link red" href="#our-catalogue">Our Catalogue</a>
+            </li>
+            <li class="link-wrapper">
+              <a class="nav-link yellow" href="#select-records"
+                >Select Records</a
+              >
+            </li>
+            <li class="link-wrapper">
+              <a class="nav-link green" href="#your-cart">Your Cart</a>
+            </li>
+            <li class="link-wrapper">
+              <a class="nav-link blue" href="#review-records">Review Records</a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+    </header>
+    <div class="fixed-banner">
+      <div id="date-time-div"></div>
+      <div id="currency-container">
+        <label for="currency-dropdown" id="currency-label"
+          >Select Currency:</label
+        >
+        <img
+          id="currency-flag"
+          src="images/canada.png"
+          alt="Canadian flag icon"
+        />
+        <select
+          name="currency-dropdown"
+          id="currency-dropdown"
+          onchange="changeCurrency()"
+        >
+          <option value="CAD" class="currency-option">CAD</option>
+          <option value="USD" class="currency-option">USD</option>
+        </select>
+      </div>
+    </div>
+    <section class="hero-section">
+      <h1 class="hero-text">Finetune Your Sound Palette with Vibrant Tunes</h1>
+      <a class="hero-button" href="#our-catalogue">Shop Now</a>
+    </section>
+    <main>
+      <section id="our-catalogue">
+        <div class="catalogue-heading-container">
+          <h2 class="catalogue-heading">Our Catalogue</h2>
+          <div class="category-filter-container">
+            <label for="category-filter" class="category-filter-label"
+              ><strong>Select Genre:</strong></label
+            >
+            <select id="category-filter" onchange="displayRecords()">
+              <option value="all" class="category-option" selected>All</option>
+              <option value="folk" class="category-option">Folk</option>
+              <option value="hip-hop" class="category-option">Hip-Hop</option>
+              <option value="pop" class="category-option">Pop</option>
+              <option value="r&b" class="category-option">R&B</option>
+              <option value="rock" class="category-option">Rock</option>
+            </select>
+          </div>
+        </div>
+        <div id="records-output">
+          <figure id="record-container" class="record-container"></figure>
+        </div>
+      </section>
+      <section id="select-records">
+        <h2 class="select-records-heading">Select Records</h2>
+        <div class="tb-container">
+          <div class="record-id-container">
+            <label for="record-id-tb"><strong>Record ID:</strong></label>
+            <input
+              type="text"
+              name="record-id-tb"
+              id="record-id-tb"
+              class="textbox"
+            />
+            <div id="record-id-tb-warning"></div>
+          </div>
+          <div class="quantity-container">
+            <label for="quantity-tb"><strong>Quantity:</strong></label>
+            <input
+              type="number"
+              name="quantity-tb"
+              id="quantity-tb"
+              class="textbox"
+              min="0"
+              max="100"
+            />
+            <div id="quantity-tb-warning"></div>
+          </div>
+        </div>
+        <div class="select-buttons-container">
+          <button type="button" class="add-button" onclick="addToCart()">
+            Add to Cart
+          </button>
+          <button
+            type="button"
+            class="details-button"
+            onclick="displayRecordDetails()"
+          >
+            Record Details
+          </button>
+          <button
+            type="button"
+            class="remove-button"
+            onclick="removeFromCart()"
+          >
+            Remove from Cart
+          </button>
+        </div>
+      </section>
+      <section id="your-cart">
+        <h2 class="your-cart-heading">Your Cart</h2>
+        <div class="cart-container">
+          <table id="cart-table" class="cart-table">
+            <tbody id="cart-table-body" class="cart-table-body">
+              <tr id="cart-table-row-header" class="cart-table-row-header"></tr>
+            </tbody>
+          </table>
+          <div id="cart-totals"></div>
+        </div>
+      </section>
+      <section id="review-records">
+        <h2>Review Records</h2>
+        <div class="review-records-container">
+          <div class="review-record-id-container">
+            <label for="review-record-id-tb"><strong>Record ID:</strong></label>
+            <input
+              type="text"
+              name="review-record-id-tb"
+              id="review-record-id-tb"
+              class="textbox"
+            />
+            <div id="review-record-id-tb-warning"></div>
+          </div>
+          <div class="review-container">
+            <label for="review-textarea"
+              ><strong>Write your review below:</strong></label
+            >
+            <br />
+            <textarea id="review-textarea" rows="5" cols="50"></textarea>
+          </div>
+          <p class="rating-label">
+            <strong>Give your rating out of 5 stars:</strong>
+          </p>
+          <div class="rating-container">
+            <div>
+              <input type="radio" name="rating" id="rating-1" value="1" />
+              <label for="rating-1" class="radio-label">1 Star</label>
+            </div>
+            <div>
+              <input type="radio" name="rating" id="rating-2" value="2" />
+              <label for="rating-2" class="radio-label">2 Stars</label>
+            </div>
+            <div>
+              <input type="radio" name="rating" id="rating-3" value="3" />
+              <label for="rating-3" class="radio-label">3 Stars</label>
+            </div>
+            <div>
+              <input type="radio" name="rating" id="rating-4" value="4" />
+              <label for="rating-4" class="radio-label">4 Stars</label>
+            </div>
+            <div>
+              <input type="radio" name="rating" id="rating-5" value="5" />
+              <label for="rating-5" class="radio-label">5 Stars</label>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="submit-review-button"
+            onclick="reviewRecords()"
+          >
+            Submit Review
+          </button>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div>&copy; 2023 Rainbow Records</div>
+      <div>Developed and Designed by Hayden Stewart</div>
+    </footer>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
